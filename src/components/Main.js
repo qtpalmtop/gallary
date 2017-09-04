@@ -178,7 +178,7 @@ class AppComponent extends React.Component {
 					top:getRangeRandom(hPosRangeY[0],hPosRangeY[1]),
 					left:getRangeRandom(hPosRangeLORX[0],hPosRangeLORX[1])
 				}
-				//alert(hPosRangeY[0]+hPosRangeY[1]);
+				//alert(hPosRangeY[0]+ "" +hPosRangeY[1]);
 			}
 
 			if(imgsArrangeTopArr && imgsArrangeTopArr[0]){
