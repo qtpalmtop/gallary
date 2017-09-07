@@ -33,6 +33,40 @@ function get30DegRandom(){
 
 let yeomanImage = require('../images/yeoman.png');
 
+class ControllerUnit extends React.Component{
+	constructor(props) {
+	  super(props);
+	  this.handleClick = this.handleClick.bind(this);
+	}
+	
+	handleClick(e){
+		// e.target.className += this.props.arrange.isCenter ? ' is-center' : '';
+		// e.target.className += this.props.arrange.isInverse ? ' is-inverse' : '';
+  		if(this.props.arrange.isCenter ){
+  			this.props.inverse();
+  			
+  		} else {
+  			
+  			this.props.center();
+  		}  		
+  	}
+
+	render(){
+		var controllerUnitClassName = 'controller-unit';
+		if(this.props.arrange.isCenter){
+			controllerUnitClassName += ' is-center';
+		} else {
+			controllerUnitClassName.replace('is-center','');
+		}
+
+		controllerUnitClassName += this.props.arrange.isInverse ? ' is-inverse' : '';
+
+		return (
+			<span className={controllerUnitClassName} onClick={this.handleClick}></span>
+		);
+	}
+}
+
 class ImgFigure extends React.Component{
 	constructor(props) {
 	  super(props);
@@ -360,10 +394,10 @@ class AppComponent extends React.Component {
 					isCenter:false
 				}
 			}
-
+			controllerUnits.push(<ControllerUnit key={index} order={index + 1} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
 			imgFigures.push(<ImgFigure key={index} ref={'imgFigure' + index} data={value} arrange={this.state.imgsArrangeArr[index]} inverse={this.inverse(index)} center={this.center(index)}/>);
 		}.bind(this));
-
+			
 	    return (
 			<section className="stage" ref="stage">
 				<section className="img-sec">
