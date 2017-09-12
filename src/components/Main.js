@@ -72,13 +72,6 @@ class ImgFigure extends React.Component {
 		super(props);
 		this.handleClick = this.handleClick.bind(this);
 	}
-	ComponentDidMount() {
-
-	}
-
-	componentWillUnmount() {
-
-	}
 
 	handleClick() {
 		if (this.props.arrange.isCenter) {
@@ -86,11 +79,6 @@ class ImgFigure extends React.Component {
 		} else {
 			this.props.center();
 		}
-	}
-
-
-	tick() {
-
 	}
 
 	render() {
@@ -106,7 +94,7 @@ class ImgFigure extends React.Component {
 			(['Moz', 'Ms', 'Webkit', '']).forEach(function(value) {
 				styleObj[value + 'Transform'] = 'rotate(' + this.props.arrange.rotate + 'deg)';
 
-			}.bind(this));
+			}.bind(this)); //不加bind的话this就是(['Moz', 'Ms', 'Webkit', ''])
 
 		}
 
@@ -117,18 +105,18 @@ class ImgFigure extends React.Component {
 		var imgFigureClassName = 'img-figure';
 		imgFigureClassName += this.props.arrange.isInverse ? ' is-inverse' : '';
 
-		var imgOpacity = {};
-		imgOpacity['opacity'] = this.props.arrange.isInverse ? '0' : '1';
-
+		var imageURL = this.props.arrange.isInverse ? '' : this.props.data.imageURL;
+		var title = this.props.arrange.isInverse ? '' : this.props.data.title;
+		var desc = this.props.arrange.isInverse ? this.props.data.desc.split('').reverse().join('') : '';
 		return (
 			<figure className={imgFigureClassName} style={styleObj} onClick={this.handleClick}>
-				<img src={this.props.data.imageURL} style={imgOpacity} alt={this.props.data.title}/>
+				<img src={imageURL} alt={title}/>
 				<figcaption>
 					//这里的this.props相当于
-					<h2 className="img-title">{this.props.data.title}</h2>
+					<h2 className="img-title">{title}</h2>
 					<div className="img-back" onClick={this.handleClick}>
 						<p>
-							{this.props.data.desc}
+							{desc}
 						</p>
 					</div>
 				</figcaption>
