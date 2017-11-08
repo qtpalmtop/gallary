@@ -10,9 +10,7 @@ let imageDatas = require('../data/imageDatas.json');
 imageDatas = (function genImageURL(imageDatasArr) {
 	for (var i = 0, j = imageDatasArr.length; i < j; i++) {
 		var singleImageData = imageDatasArr[i];
-
 		singleImageData.imageURL = require('../images/' + singleImageData.fileName);
-
 		imageDatasArr[i] = singleImageData;
 	}
 	return imageDatasArr;
@@ -257,7 +255,7 @@ class AppComponent extends React.Component {
 				isCenter: false
 			}
 
-			//alert(hPosRangeY[0]+ "" +hPosRangeY[1]);
+			//console.log(hPosRangeY[0]+ "" +hPosRangeY[1]);
 		}
 
 		if (imgsArrangeTopArr && imgsArrangeTopArr[0]) {
@@ -322,8 +320,8 @@ class AppComponent extends React.Component {
 			}
 
 		});
-
-
+		console.log(this.state.Constant.centerPos.left);
+		
 		// this.state.Constant.centerPos = {
 		// 	left:halfStageW - halfImgW,
 		// 	top:halfStageH - halfImgH
@@ -347,7 +345,7 @@ class AppComponent extends React.Component {
 	}
 
 	componentWillUnmount() {
-
+		clearTime(timerID)
 	}
 
 	tick() {
